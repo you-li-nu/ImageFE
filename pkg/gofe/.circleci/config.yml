@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.14
+
+    working_directory: /go/src/imgfe/pkg/gofe
+
+    steps:
+      - checkout
+
+      - run:
+          name: Get dependencies
+          command: go get -t -v ./...
+
+      - run:
+          name: Run tests
+          command: go test -v ./...
